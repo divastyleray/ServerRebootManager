@@ -1,0 +1,17 @@
+<div>
+  <label for="server-select">Server</label>
+  <select
+    id="server-select"
+    aria-label="Select server"
+    [value]="selectedId"
+    #sel (change)="onSelect(sel.value)"
+  >
+    <option value="">-- select a server --</option>
+    <option *ngFor="let s of servers" [value]="s.id">
+      {{ s.name }} ({{ s.ip }})
+    </option>
+  </select>
+
+  <div *ngIf="loading" aria-live="polite">Loading servers…</div>
+  <div *ngIf="error" role="alert" style="color:red">{{ error }}</div>
+</div>

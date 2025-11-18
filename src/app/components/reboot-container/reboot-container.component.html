@@ -1,0 +1,38 @@
+<section aria-labelledby="reboot-heading" style="padding:20px;">
+  <h1 id="reboot-heading">Schedule Server Reboot</h1>
+
+  <server-selector
+    (serverSelected)="onServerSelected($event)"
+  ></server-selector>
+
+  <reboot-scheduler
+    (scheduleChange)="onScheduleChange($event)"
+  ></reboot-scheduler>
+
+  <div style="margin-top:16px;">
+    <button
+      type="button"
+      (click)="submit()"
+      [disabled]="!server || !schedule || loading"
+      [attr.aria-disabled]="!server || !schedule || loading"
+    >
+      Schedule Reboot
+    </button>
+  </div>
+
+  <div
+    *ngIf="server && schedule"
+    style="margin-top:12px;"
+    role="status"
+    class="preview"
+    aria-live="polite"
+  >
+    <strong>Preview:</strong>
+    <div>{{ server.name }} ({{ server.ip }})</div>
+    <div>{{ schedule.date }} {{ schedule.time }} ({{ schedule.timezone }})</div>
+  </div>
+
+  <div *ngIf="loading" aria-live="polite">Submitting…</div>
+  <div *ngIf="error" role="alert" style="color:red">{{ error }}</div>
+  <div *ngIf="result" style="color:green">Scheduled: {{ result | json }}</div>
+</section>

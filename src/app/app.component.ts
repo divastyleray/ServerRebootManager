@@ -1,13 +1,10 @@
 import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { RebootContainerComponent } from './components/reboot-container/reboot-container.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet],
-  templateUrl: './app.component.html',
-  styleUrl: './app.component.css'
+  imports: [RebootContainerComponent],
+  template: `<main class="container"><reboot-container></reboot-container></main>`,
 })
-export class AppComponent {
-  title = 'fix-ws';
-}
+export class AppComponent {}
